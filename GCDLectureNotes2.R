@@ -14,7 +14,8 @@
 ## Example Structure
 # http://dev.mysql.com/doc/employee/en/sakila-structure.html
 
-
+### Connecting and listing databases
+library(RMySQL)
 
 
 
