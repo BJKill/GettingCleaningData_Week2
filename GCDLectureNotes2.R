@@ -79,38 +79,48 @@ BiocManager::install(version = "3.11")
 BiocManager::install("rhdf5")
 BiocManager::install() ## gave me error
 
+## Create file
 library(rhdf5)
 created = h5createFile("example.h5")
 created
 
+## Create groups
+created = h5createGroup("example.h5", "foo")
+created = h5createGroup("example.h5", "baa")
+created = h5createGroup("example.h5","foo/foobaa")
+h5ls("example.h5")
 
+## Write to groups
+A = matrix(1:10, nrow = 5, ncol = 2)
+h5write(A, "example.h5", "foo/A")
+B = array(seq(0.1, 2.0, by = 0.1), dim = c(5,2,2))
+attr(B, "scale") <- "liter"
+h5write(B, "example.h5", "foo/foobaa/B")
+h5ls("example.h5")
 
+## Write a data set
+df <- data.frame(1L:5L, seq(0, 1, length.out = 5), 
+                        c("ab", "cde", "fghi", "a", "s"), stringsAsFactors = FALSE)
+h5write(df, "example.h5", "df")
+h5ls("example.h5")
 
+## Reading data
+readA = h5read("example.h5", "foo/A")
+readB = h5read("example.h5", "foo/foobaa/B")
+readdf = h5read("example.h5", "df")
+readA
+readB
+readdf
 
+## Writing and reading chunks
+# write these 3 numbers to the first 3 rows and first column of this dataset
+h5write(c(12,13,14), "example.h5", "foo/A", index = list(1:3,1)) 
+h5read("example.h5", "foo/A")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## Notes and further resources
+# - hdf5 can be used to optimize reading/writing from disc in R
+# - extra help at https://bioconductor.org
+# - HDF group site at https://www.hdfgroup.org/
 
 
 
