@@ -60,6 +60,63 @@ dbDisconnect(hg19)
 
 
 
+### HDF5 - Heirarchical data format
+# - Used for storing large data sets
+# - Supports storing a range of data types
+# - 'groups' - containing zero or more data sets and metadata
+#       - Have a 'group header' with group name and list of attributes
+#       - Have a 'group symbol table' with a list of objects in group
+# - 'datasets' - multidimensional array of data elements with metadata
+#       - Have a 'header' with name, datatype, dataspace, and storage layout
+#       - Have a 'data array' with the data
+# - http://www.hdfgroup.org/
+
+##source("https://bioconductor.org/bioLite.R")
+## Install R's HDF5 package
+if (!requireNamespace("BiocManager", quietly = TRUE))
+        install.packages("BiocManager")
+BiocManager::install(version = "3.11")
+BiocManager::install("rhdf5")
+BiocManager::install() ## gave me error
+
+library(rhdf5)
+created = h5createFile("example.h5")
+created
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
