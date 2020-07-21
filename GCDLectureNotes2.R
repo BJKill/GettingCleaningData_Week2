@@ -124,6 +124,67 @@ h5read("example.h5", "foo/A")
 
 
 
+### Reading Data from the Web
+
+## Webscraping - Programatically extracting data from the HTML code of websites
+# - It can be a great way to get data
+# - Many websites have information you may want to programatically read
+# - In some cases this is against the terms of service for the website
+# - Attempting to read too many pages too quickly can get your IP address blocked
+# - http://en.wikipedia.org/wiki/Web_scraping
+
+## Example: Google Scholar
+# - http://scholar.google.com/citations?user=HI-I6C0AAAAJ&hl=en
+
+con = url("https://scholar.google.com/citations?user=HI-I6C0AAAAJ&hl=en")
+htmlCode = readLines(con)
+close(con)
+htmlCode
+
+## Parsing with XML
+library(XML)
+library(httr)
+url <- "https://scholar.google.com/citations?user=HI-I6C0AAAAJ&hl=en"
+url2 <- GET(url)
+html <- htmlTreeParse(url2, useInternalNodes = T)
+xpathSApply(html, "//title", xmlValue)                 # returns "Jeff Leek - Google Scholar"
+xpathSApply(html, "//td[@id='col-citedby']", xmlValue) # returns empty list - outdated code again!
+
+## GET from the httr package - NEEDED IT ABOVE - OUTDATED AGAIN
+library(httr)
+html2 = GET(url)
+content2 = content(html2, as="text")
+parsedHtml = htmlParse(content2, asText = TRUE)
+xpathSApply(parsedHtml, "//title", xmlValue)          # returns "Jeff Leek - Google Scholar"
+
+## Accessing websites with passwords
+pg2 = GET("http://httpbin.org/basic-auth/user/passwd", authenticate("user", "passwd"))
+pg2
+names(pg2)
+
+## Using handles
+google = handle("http://google.com")
+pg1 = GET(handle = google, path = "/")
+pg2 = GET(handle = google, path = "search")
+
+## Notes and further resources
+# - R Bloggers search for web scraping
+# - httr help file - http://cran.r-project.org/web/packages/httr/httr.pdf
+# - See later lectures on APIs
+
+
+### Reading data from APIs
+## Application programming interfaces
+# - https://developer.twitter.com/docs/api/1/get/blocks/blocking - BAD LINK AGAIN
+# - HAD TO APPLY FOR DEVELOPER ACCESS TO TWITTER. WAITING FOR THAT.
+
+
+
+
+
+
+
+
 
 
 
