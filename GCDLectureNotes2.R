@@ -201,9 +201,52 @@ json2[1,1:4]
 # - httr demos on Github
 
 
+### Reading from other data sources
+## There is a package for that
+# - Roger has a nice video on how there are R packages for most things that you will want to access
+# - Here, we're going to briefly review a few useful packages
+# - In general, the best way to find out if the R package exists is to Google "data storage mechanism R package"
+#       - For example, "MySQL R package"
+
+## Interacting more directly with files
+# - file - open a connection to a text file
+# - url - open a connection to a url
+# - gzfile - open a connection to a .gz file (zip)
+# - bzfile - open a connection to a .bz2 file (zip)
+# - ?connections - for more information
+# - REMEMBER TO CLOSE CONNECTIONS, FOR THE LOVE OF ALL THAT IS SACRED
 
 
+## foreign package
+# - Loads data from Minitab, S, SAS, SPSS, Stata, Systat
+# - Basic functions 'read.foo'
+#       - read.arff   (Weka)
+#       - read.dta    (Stata)
+#       - read.mtp    (Minitab)
+#       - read.octave (Octave)
+#       - read.spss   (SPSS)
+#       - read.xport  (SAS)
+# - See the help page for more details http://cran.r-project.org/web/packages/foreign/foreign.pdf
 
 
+## Examples of other database packages
+# - RPostgresSQL - provides a DBI-compliant database connection from R.
+#       - tutorial - https://code.google.com/p/rpostgresql
+#       - help file - http://cran.r-project.org/web/packages/RPostgreSQL/RPostgreSQL.pdf
+# - RODBC - provides interfaces to multiple databases including PostgreSQL, MySQL, Microsoft Access, and SQLite.
+#       - tutorial - http://cran.r-project.org/web/packages/RODBC/vignettes/RODBC.pdf
+#       - help file - http://cran.r-project.org/web/packages/RODBC/RODBC.pdf
+# - RMongo & rmongodb - provides interfaces to MongoDb
+#       - help file - http://cran.r-project.org/web/packages/RMongo/RMongo.pdf
+#       - example - http://www.r-bloggers.com/r-and-mongodb/
 
+## Reading Images
+# - jpeg - http://cran.r-project.org/web/packages/jpeg/index/html
+# - readbitmap - http://cran.r-project.org/web/packages/readbitmap/index/html
+# - png - http://cran.r-project.org/web/packages/png/index/html
+# - EBImage (Bioconductor) - http://www.bioconductor/org/packages/2.13/bioc/html/EBImage.html
+
+## Reading music data
+# - tuneR - http://cran.r-project.org/web/packages/tuneR/
+# - seewave - http://rug.mnhn.fr/seewave/
 
