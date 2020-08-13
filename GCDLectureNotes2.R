@@ -178,12 +178,27 @@ pg2 = GET(handle = google, path = "search")
 # - https://developer.twitter.com/docs/api/1/get/blocks/blocking - BAD LINK AGAIN
 # - HAD TO APPLY FOR DEVELOPER ACCESS TO TWITTER. WAITING FOR THAT.
 
+## Accessing Twitter from R
+library(httr)
+myapp = oauth_app("twitter", key = "yourConsumerKeyHere", secret = "yourConsumerSecretHere")
+sig = sign_oauth1.0(myapp, token = "yourTokenHere", token_secret = "yourTokenSecretHere")
+homeTL = GET("https://api.twitter.com/1.1/statuses/home_timeline.json", sig)
 
 
+## Converting the json object
+json1 = content(homeTL)
+json2 = jsonlite::fromJSON(toJSON(json1))
+json2[1,1:4]
 
+# https://dev.twitter.com/docs/api/1.1/get/search/tweets
+# https://dev.twitter.com/docs/api/1.1/overview
 
-
-
+## In general, look at the documentation
+# - httr allows GET, POST, PUT, DELETE requests if you are authorized
+# - You can authenticate with a user name or a password
+# - Most modern APIs use something like oauth
+# - httr works well with Facebook, Google, Twitter, Github, etc.
+# - httr demos on Github
 
 
 
